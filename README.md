@@ -1,4 +1,8 @@
-# Usage
+# zsh-chat-gpt
+
+#### Command hints from Chat GPT in your terminal!
+
+![zsh-chat-gpt](https://github.com/user-attachments/assets/9c4bed75-bf2a-4818-be04-47bfdc460891)
 
 ## Installation 
 
