@@ -2,6 +2,8 @@
 
 #### Command hints from Chat GPT in your terminal!
 
+Inspired by and adapted from [zsh-gpt](https://github.com/antonjs/zsh-gpt)
+
 ![zsh-chat-gpt](https://github.com/user-attachments/assets/9c4bed75-bf2a-4818-be04-47bfdc460891)
 
 ## Installation 
@@ -26,6 +28,20 @@
 
 3. Restart zsh (such as by opening a new instance of your terminal emulator).
 
+
+#### Manual
+
+1. Clone the repo
+    ```zsh
+    git clone https://github.com/nicklpeterson/zsh-chat-gpt.git ~/somewhere
+    ```
+2. Add this line to your `~/.zshrc` file
+    ```zsh
+    autoload -U compinit; compinit
+    source ~/somewhere/zsh-chat-gpt/zsh-chat-gpt.plugin.zsh
+    ```
+
+    
 ## Environment Variables
 
 Add these to your `.zshrc` file.
