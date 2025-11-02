@@ -6,9 +6,7 @@ Inspired by and adapted from [zsh-gpt](https://github.com/antonjs/zsh-gpt)
 
 ![zsh-chat-gpt](https://github.com/user-attachments/assets/9c4bed75-bf2a-4818-be04-47bfdc460891)
 
-## Installation 
-
-* Clone this repository locaally and copy zsh-chat-gpt to your preferred location
+## Installation
 
 ### Examples
 
