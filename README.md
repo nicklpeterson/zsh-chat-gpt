@@ -8,8 +8,6 @@ Inspired by and adapted from [zsh-gpt](https://github.com/antonjs/zsh-gpt)
 
 ## Installation
 
-### Examples
-
 #### [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 1. Clone this repository in oh-my-zsh's plugins directory:
