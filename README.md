@@ -11,7 +11,7 @@
 1. Clone this repository in oh-my-zsh's plugins directory:
 
     ```zsh
-    git clone https://github.com/nickpeterson/zsh-chat-gpt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-chat-gpt
+    git clone https://github.com/nicklpeterson/zsh-chat-gpt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-chat-gpt
     ```
 
 2. Activate the plugin in `~/.zshrc`:
