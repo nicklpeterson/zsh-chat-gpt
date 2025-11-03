@@ -4,7 +4,8 @@
 
 Inspired by and adapted from [zsh-gpt](https://github.com/antonjs/zsh-gpt)
 
-![zsh-chat-gpt](https://github.com/user-attachments/assets/9c4bed75-bf2a-4818-be04-47bfdc460891)
+![zsh-chat-gpt](https://github.com/user-attachments/assets/7db30b97-84a2-4155-9414-91bdf5e8f64c)
+
 
 ## Installation
 
