@@ -1,6 +1,6 @@
 # zsh-chat-gpt
 
-#### Command hints from Chat GPT in your terminal!
+#### Command line assistance from Chat GPT in your terminal!
 
 Inspired by and adapted from [zsh-gpt](https://github.com/antonjs/zsh-gpt)
 
