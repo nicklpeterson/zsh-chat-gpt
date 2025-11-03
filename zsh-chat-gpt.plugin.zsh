@@ -20,13 +20,13 @@ Do not decorate the answer with tickmarks"}
   local input=$*
 
   if [[ "$streaming_enabled" = true ]]; then
-    gpt_stream $context $model $input
+    _gpt_stream $context $model $input
   else
-    gpt_without_streaming $context $model $input
+    _gpt_without_streaming $context $model $input
   fi
 }
 
-gpt_without_streaming() {
+_gpt_without_streaming() {
   local context=$1
   local model=$2
   local input=$3
@@ -35,12 +35,12 @@ gpt_without_streaming() {
   setopt pipefail
   setopt localoptions nomonitor
 
-  hide_cursor
+  _hide_cursor
 
   # Ensure cursor is restored on exit or Ctrl-C
   trap 'show_cursor; print ""; return' INT
 
-  start_spinner $model & spinner_pid=$!
+  _start_spinner $model & spinner_pid=$!
    
   local response=$(curl https://api.openai.com/v1/chat/completions -sN \
     -H "Content-Type: application/json" \
@@ -53,16 +53,16 @@ gpt_without_streaming() {
       ]
     }'| jq -r 'try .choices[].message.content // .')
 
-  stop_spinner $spinner_pid
+  _stop_spinner $spinner_pid
 
   printf "%s\n" "$response"
 
-  show_cursor
+  _show_cursor
 
   return 1
 }
 
-gpt_stream() {
+_gpt_stream() {
   local context=$1
   local model=$2
   local input=$3
@@ -85,28 +85,28 @@ gpt_stream() {
       }'
   )
 
-  hide_cursor
+  _hide_cursor
 
   # Ensure cursor is restored on exit or Ctrl-C
   trap 'stop_spinner $spinner_pid; print ""; return' INT TERM # EXIT
 
-  start_spinner $model & spinner_pid=$!
+  _start_spinner $model & spinner_pid=$!
 
   # Wait for the first line of data
   local line
   while true; do
     if read -t 0.05 -u $FD line; then
-      stop_spinner $spinner_pid
+      _stop_spinner $spinner_pid
       break
     fi
   done
 
   # Process the first line (already read)
-  parse_chunk "$line"
+  _parse_chunk "$line"
   
   # Continue reading and parsing the rest of the stream
   while IFS= read -r line <&$FD; do
-    parse_chunk "$line"
+    _parse_chunk "$line"
   done
 
   exec {FD}<&-
@@ -114,7 +114,7 @@ gpt_stream() {
   return 0
 }
 
-parse_chunk() {
+_parse_chunk() {
   local line=$1
   local trimmed=$(tr -d '\r' <<< "$line")
 
@@ -136,12 +136,12 @@ parse_chunk() {
     if [ "$gpt_response" = "zsh-gpt-error" ]; then
       echo $line
     else
-      typing_effect $gpt_response
+      _typing_effect $gpt_response
     fi
   fi
 }
 
-typing_effect() {
+_typing_effect() {
   local text=$1
   for (( i=0; i<${#text}; i++ )); do
     printf "%s" "${text:$i:1}"
@@ -149,7 +149,7 @@ typing_effect() {
   done
 }
 
-start_spinner() {
+_start_spinner() {
   local state=1
   local frames=(".  " ".. " "..." " .." "  ." "   ")
 
@@ -161,17 +161,17 @@ start_spinner() {
   done
 }
 
-stop_spinner() {
+_stop_spinner() {
   local pid=$1
   kill "$pid" 2>/dev/null
   wait "$pid" 2>/dev/null
   printf "\r\033[K\033[?25h"
 }
 
-hide_cursor() {
+_hide_cursor() {
   printf "\033[?25l"
 }
 
-show_cursor() {
+_show_cursor() {
   printf "\033[?25h"
 }
